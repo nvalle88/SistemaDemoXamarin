@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CityParkAgente.Pages.MainPage" 
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:local="clr-namespace:CityParkAgente.Behaviors;assembly=CityParkAgente"
+             xmlns:tkmap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Agente"
+             BackgroundColor="{StaticResource MainColor}">
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+       
+        <!--<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">-->
+            
+            <!--<maps:Map         
+            x:Name="MyMap"
+            IsShowingUser="true"
+            WidthRequest="400"
+            HeightRequest="390"                               
+            >
+                <maps:Map.Behaviors>
+
+                    <local:BindableMapBehavior ItemsSource="{Binding Locations}" />
+
+                </maps:Map.Behaviors>
+
+
+            </maps:Map>-->
+
+        <tkmap:TKCustomMap 
+                x:Name="Mapa"
+              VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                CustomPins="{Binding Locations}"    
+                IsShowingUser="True"   
+                >
+        </tkmap:TKCustomMap>
+            
+            <!--<Image x:Name="ImagenCity"
+               Source="ic_City_Park.png"
+                WidthRequest="180"
+                HeightRequest="100"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                IsVisible="True">
+            </Image>-->           
+            <!--<Image Grid.Column="1" Grid.Row="1" Source="ic_VerificarAuto.png"
+           HorizontalOptions="Center"
+           VerticalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding VerificarAutoCommand} "></TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Grid.Column="1" Grid.Row="2" Source="consulta.png"
+           HorizontalOptions="Center"
+           VerticalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ConsultarMultasCommand} "></TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>-->
+        
+        <controls:ImageButton VerticalOptions="Start" HorizontalOptions="Start" Margin="5,5,0,0"
+                    BackgroundColor="#ffffff" 
+                    HeightRequest="50" 
+                    WidthRequest="50" 
+                    Source="ic_update" 
+                    ImageTintColor="#777777" 
+                    Orientation="ImageToRight"  
+                    ImageHeightRequest="50" 
+                    ImageWidthRequest="50" 
+                    Command="{Binding RefreshParkingCommand}"
+                   />
+
+            <Grid HorizontalOptions="Center" VerticalOptions="End" Opacity="0.7" Margin="0,0,0,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+
+                <controls:ImageButton 
+                    Text="Verificar Parqueo" 
+                    FontSize="8"
+                    BackgroundColor="#1976D2" 
+                    TextColor="#ffffff"                     
+                    HeightRequest="80" 
+                    WidthRequest="80" 
+                    Source="ic_search" 
+                    ImageTintColor="White"
+                    Orientation="ImageOnTop"                     
+                   
+                    Command="{Binding VerificarAutoCommand}"
+                    Grid.Column="0" Grid.Row="0"
+                    />
+                <controls:ImageButton 
+                    Text="Consultar  Multas" 
+                    FontSize="8"
+                    BackgroundColor="#1976D2" 
+                    TextColor="#ffffff" 
+               
+                    Source="ic_description" 
+                    ImageTintColor="White" 
+                    Orientation="ImageOnTop"  
+               
+                    Command="{Binding ConsultarMultasCommand}"
+                    Grid.Column="1" Grid.Row="0"
+                   />
+            <controls:ImageButton 
+                    Text="Ver como Lista" 
+                    FontSize="8"
+                    BackgroundColor="#1976D2" 
+                    TextColor="#ffffff" 
+                
+                    Source="ic_description" 
+                    ImageTintColor="White" 
+                    Orientation="ImageOnTop"  
+                  
+                    Command="{Binding ViewListCommand}"
+                    Grid.Column="2" Grid.Row="0"
+                   />
+
+        </Grid>
+            
+        <!--</StackLayout>-->
+    </Grid>
+</ContentPage>

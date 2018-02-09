@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CityParkAgente.Pages.ConsultarAutoPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Consultar vehícilos multados"
+             BackgroundColor="{StaticResource MainColor}">
+
+    <StackLayout>
+    <ActivityIndicator  HorizontalOptions="Center" 
+                            Color="{StaticResource AccentColor2}" 
+                            IsRunning="{Binding IsRunning}" >
+    </ActivityIndicator>
+    <ListView 
+    ItemsSource="{Binding VehiculosMultados}"
+    HasUnevenRows="True">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem  Command="{Binding DettaleComman}" Text="More" />
+                            <MenuItem Command="{Binding EliminarCommand}" Text="Delete" IsDestructive="True" />        
+                        </ViewCell.ContextActions>
+                        <Grid>
+                      
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout  Orientation="Vertical">
+                                <Label 
+                              FontAttributes="Bold"
+                              VerticalOptions="Center"
+                              TextColor="{StaticResource FontColor}"
+                              Text="{Binding Placa,StringFormat='Placa:{0}'}"/>
+                            </StackLayout>
+                        <StackLayout Grid.Column="1" Orientation="Vertical">
+                            <StackLayout Orientation="Vertical">
+                                <Label 
+                                      VerticalOptions="Center"
+                                      TextColor="{StaticResource AccentColor1}"
+                                      Text="{Binding Fecha,StringFormat='Fecha:{0}'}}"/>
+                                <Label 
+                                      VerticalOptions="Center"
+                                      TextColor="{StaticResource AccentColor1}"
+                                      Text="{Binding Valor,StringFormat='Valor:{0}'}}"/>
+                                <Label 
+                                      VerticalOptions="Center"
+                                      TextColor="{StaticResource AccentColor1}"
+                                      Text="{Binding Longitud,StringFormat='Longitud:{0}'}}"/>
+                                <Label 
+                                      VerticalOptions="Center"
+                                      TextColor="{StaticResource AccentColor1}"
+                                      Text="{Binding Latitud,StringFormat='Latitud:{0}'}}"/>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+        
+    </StackLayout>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem>
+                <ActivityIndicator  HorizontalOptions="Center" 
+                            Color="{StaticResource AccentColor2}" 
+                            IsRunning="{Binding IsRunning}" >
+                </ActivityIndicator>
+            </ToolbarItem>
+    </ContentPage.ToolbarItems>
+</ContentPage>

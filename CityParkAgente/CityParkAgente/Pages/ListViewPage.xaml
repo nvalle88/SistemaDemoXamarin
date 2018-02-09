@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="CityParkAgente.Pages.ListViewPage">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
+            <StackLayout BackgroundColor="White">
+            <ScrollView>
+
+                <ListView x:Name="listView" ItemsSource="{Binding Locations}" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout 
+                        Orientation="Vertical">
+                                    <Label Text="{Binding Titulo}" FontSize="Large"
+                                TextColor="Black" />
+                                    <Label Text="{Binding Subtitulo}" FontSize="Medium"
+                                TextColor="Black" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+        </ScrollView>
+
+    </StackLayout>
+        <Button Text="Cerrar" TextColor="WhiteSmoke" BackgroundColor="{StaticResource AccentColor2}" Clicked="OnClose"></Button>
+    </StackLayout>
+</pages:PopupPage>

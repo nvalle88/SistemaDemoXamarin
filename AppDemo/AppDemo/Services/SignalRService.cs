@@ -28,8 +28,8 @@ namespace AppDemo.Services
             LivePositionRequest lpr = new LivePositionRequest
             {
                 EmpresaId = Settings.companyId,
-                AgenteId = App.AgenteActual.AgenteId,
-                Nombre = App.AgenteActual.Nombre + " " + App.AgenteActual.Apellido,
+                AgenteId = App.AgenteActual.Id,
+                Nombre = App.AgenteActual.Nombre,
                 fecha = DateTime.Now,
                 Lat = lat,
                 Lon = lon

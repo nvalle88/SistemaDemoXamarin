@@ -96,28 +96,24 @@ namespace AppDemo.ViewModels
                 return;
             }
 
-            var response = await apiService.Login(Usuario, Contrasena);
+            var response = await apiService.Login();
             if (response.IsSuccess)
             {
                 var agente = (Agente)response.Result;
 
                 var agenteView = new AgenteViewModel
                 {
-                    Contrasena = agente.Contrasena,
                     Nombre = agente.Nombre,
-                    AgenteId = agente.AgenteId,
-                    Apellido = agente.Apellido,
-                    Multa = agente.Multa,
+                    Id = agente.Id,                  
                 };
 
                 var main = MainViewModel.GetInstance();
                 main.LoadMenu(agenteView.Nombre);
                 main.CargarLugares();
 
-                Settings.userId = agente.AgenteId;
-                Settings.UserName = agente.Nombre;
-                Settings.UserLastName = agente.Apellido;
-                Settings.companyId = agente.EmpresaId;
+                Settings.userId = agente.Id;
+                Settings.UserName = agente.Nombre;                
+                Settings.companyId = 1;
                 Settings.IsLoggedIn = true;
                 main.InitMultas();
                 navigationService.SetMainPage(agenteView);

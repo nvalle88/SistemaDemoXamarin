@@ -29,50 +29,20 @@ namespace AppDemo.Services
             navigationService = new NavigationService();
         }
 
-        public async Task<Response> Login(string usuario, string contrasena)
+        public async Task<Response> Login()
         {
-            try
-            {
-                var loginRequest = new LoginRequest
-                {
-                    Agente = usuario,
-                    Contrasena = contrasena,
-                };
+          
+                var user = new Agente { Id =1,
+                Nombre= "Nestor"};
 
-                var request = JsonConvert.SerializeObject(loginRequest);
-                var content = new StringContent(request, Encoding.UTF8, "application/json");
-                var client = new HttpClient();
-                client.BaseAddress = new Uri(URL_ws);
-                var url = "/api/Agentes/Login";
-                var response = await client.PostAsync(url, content);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    return new Response
-                    {
-                        IsSuccess = false,
-                        Message = "Usuario o Contraseña incorrecto",
-                    };
-                }
-
-                var result = await response.Content.ReadAsStringAsync();
-                var user = JsonConvert.DeserializeObject<Agente>(result);
                 return new Response
                 {
                     IsSuccess = true,
                     Message = "Login Ok",
                     Result = user,
                 };
-            }
-            catch (Exception ex)
-            {
-                return new Response
-                {
-                    IsSuccess = false,
-                    Message = ex.Message
-                };
-                throw;
-            }
+            
+           
         }
         public async Task<Response> InsertarMulta(Multa multa)
         {
@@ -180,7 +150,7 @@ namespace AppDemo.Services
                 {
                     Placa = placa,
                     Plaza = plaza,
-                    AgenteId = navigationService.GetAgenteActual().AgenteId,
+                    AgenteId = navigationService.GetAgenteActual().Id,
                 };
                 var carro = new Carro
                 {
@@ -344,7 +314,7 @@ namespace AppDemo.Services
         {
             try
             {
-                Agente _agente = new Agente { AgenteId = _agenteId };
+                Agente _agente = new Agente { Id = _agenteId };
 
                 var request = JsonConvert.SerializeObject(_agente);
                 var content = new StringContent(request, Encoding.UTF8, "application/json");

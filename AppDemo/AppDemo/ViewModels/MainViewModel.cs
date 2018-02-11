@@ -362,29 +362,29 @@ namespace AppDemo.ViewModels
         /// <summary>
         /// Carga los vehiculos multados por el agente actual en la fecha actual para cuando sea necesario buscarlos
         /// </summary>
-        public async void LoadVehiculosMultados()
-        {
-            IsRunning = true;
-            var vehiculos = await apiService.loadVehiculosMultados(navigationService.GetAgenteActual().AgenteId.ToString());
-            VehiculosMultados.Clear();
-            foreach (var vehiculo in vehiculos)
-            {
-                VehiculosMultados.Add(new VehiculosMultadosViewModels
-                {
-                    Valor = vehiculo.AgenteId,
-                    Agente = vehiculo.Agente,
-                    AgenteId = vehiculo.AgenteId,
-                    latitud = vehiculo.latitud,
-                    Longitud = vehiculo.Longitud,
-                    Placa = vehiculo.Placa,
-                    Fecha = vehiculo.Fecha,
-                    Foto = vehiculo.Foto,
-                    MultaId = vehiculo.MultaId,
-                }
-                );
-            }
-            IsRunning = false;
-        }
+        //public async void LoadVehiculosMultados()
+        //{
+        //    IsRunning = true;
+        //    var vehiculos = await apiService.loadVehiculosMultados(navigationService.GetAgenteActual().Id.ToString());
+        //    VehiculosMultados.Clear();
+        //    foreach (var vehiculo in vehiculos)
+        //    {
+        //        VehiculosMultados.Add(new VehiculosMultadosViewModels
+        //        {
+        //            Valor = vehiculo.AgenteId,
+        //            Agente = vehiculo.Agente,
+        //            AgenteId = vehiculo.AgenteId,
+        //            latitud = vehiculo.latitud,
+        //            Longitud = vehiculo.Longitud,
+        //            Placa = vehiculo.Placa,
+        //            Fecha = vehiculo.Fecha,
+        //            Foto = vehiculo.Foto,
+        //            MultaId = vehiculo.MultaId,
+        //        }
+        //        );
+        //    }
+        //    IsRunning = false;
+        //}
         /// <summary>
         /// Se arma el menu y en el encabezado del menú se muestra el nombre del agente logeado en la aplicación
         /// </summary>

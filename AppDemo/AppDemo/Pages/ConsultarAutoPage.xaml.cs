@@ -14,7 +14,7 @@ namespace AppDemo.Pages
             var main = (MainViewModel)BindingContext;
             base.Appearing += (object sender, EventArgs e) =>
             {
-                main.LoadVehiculosMultados();
+                //main.LoadVehiculosMultados();
             };
         }
 

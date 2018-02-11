@@ -23,8 +23,7 @@ namespace AppDemo
                     AgenteViewModel agenteView = new AgenteViewModel
                     {
                         Nombre = Settings.UserName,
-                        AgenteId = Settings.userId,
-                        Apellido = Settings.UserLastName,
+                        Id = Settings.userId,
                     };
                     //   MiDispositivo = new Dispositivo { DispositivoId = Settings.deviceId };
                     var main = MainViewModel.GetInstance();

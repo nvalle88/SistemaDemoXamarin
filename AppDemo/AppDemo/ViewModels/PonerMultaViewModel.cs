@@ -186,7 +186,7 @@ namespace AppDemo.ViewModels
 
             var multa = new Multa
             {
-                AgenteId = navigationService.GetAgenteActual().AgenteId,
+                AgenteId = navigationService.GetAgenteActual().Id,
                 Fecha = DateTime.Now,
                 Valor = Valor,
                 Placa = Placa,

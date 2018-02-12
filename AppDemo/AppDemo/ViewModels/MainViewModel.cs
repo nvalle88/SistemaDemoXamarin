@@ -73,6 +73,8 @@ namespace AppDemo.ViewModels
         public ObservableCollection<Pin> Pins { get; set; }
         public ObservableCollection<PinRequest> LocationsRequest { get; set; }
         public ObservableCollection<TKCustomMapPin> locations;
+        public ObservableCollection<ListRequest> listlocation;
+
 
         public ICommand PinCommand;
 
@@ -120,7 +122,8 @@ namespace AppDemo.ViewModels
             instance = this;
             Pins = new ObservableCollection<Pin>();
             Locations = new ObservableCollection<TKCustomMapPin>();
-            locations = new ObservableCollection<TKCustomMapPin>(); 
+            locations = new ObservableCollection<TKCustomMapPin>();
+            listlocation = new ObservableCollection<ListRequest>();
 
             LocationsRequest = new ObservableCollection<PinRequest>();
             apiService = new ApiService();
@@ -143,12 +146,13 @@ namespace AppDemo.ViewModels
                 {
                 var clientes = await apiService.GetAllClients();
                 Locations.Clear();
+                ListLocation.Clear();
                 clientes.Count();
                     if (clientes!=null && clientes.Count>0)
                     {
                         foreach (var cliente in clientes)
                         {
-                            var pin = new TKCustomMapPin
+                            var Pincliente = new TKCustomMapPin
                             {
                                 Image = "auto.png",
                                 Position = new Position(cliente.Lat, cliente.Lon),
@@ -156,7 +160,13 @@ namespace AppDemo.ViewModels
                                 Subtitle = cliente.Telefono,
                                 ShowCallout = true,
                             };
-                            Locations.Add(pin);
+                            var itemcliente = new ListRequest
+                            {
+                                Titulo=cliente.Nombre,
+                                Subtitulo=cliente.Telefono
+                            };
+                            Locations.Add(Pincliente);
+                        ListLocation.Add(itemcliente);
                         }
 
 
@@ -234,6 +244,17 @@ namespace AppDemo.ViewModels
             }
             get { return locations; }
         }
+        public ObservableCollection<ListRequest> ListLocation
+        {
+            protected set
+            {
+                listlocation = ListLocation;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ListLocation"));
+
+            }
+            get { return listlocation; }
+        }
+
 
         /// <summary>
         /// Desde aquí enviamos los datos de localización de forma periodica hacia la aplicacion web 

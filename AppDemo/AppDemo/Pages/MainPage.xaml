@@ -106,7 +106,6 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
                     <StackLayout  x:Name="Add" 
@@ -114,10 +113,11 @@
                                       HorizontalOptions="FillAndExpand"
                                       Grid.Column="0" 
                                       Grid.Row="0">
-                        <Image Source="icon.png" 
+                        <Image Source="addc.png" 
                                                HeightRequest="60"
                                                WidthRequest="60"
-                                               Aspect="AspectFit"></Image>
+                                               Aspect="AspectFit"
+                               ></Image>
                         <Label Text="Agregar" 
                                    TextColor="#1976D2" 
                                    HorizontalOptions="FillAndExpand"
@@ -130,10 +130,12 @@
                                       HorizontalOptions="FillAndExpand"
                                       Grid.Column="1" 
                                       Grid.Row="0">
-                        <Image Source="icon.png" 
+                        <Image Source="checkin.png" 
                                                HeightRequest="60"
                                                WidthRequest="60"
-                                               Aspect="AspectFit"></Image>
+                                               Aspect="AspectFit"
+                               
+                                                > </Image>
 
                         <Label Text="Checkin" 
                                    TextColor="#1976D2" 
@@ -146,11 +148,26 @@
             </Grid>
 
             <Grid x:Name="Notification"  HeightRequest="200">
-                <StackLayout BackgroundColor="Black" Opacity="0.3"></StackLayout>
+                <StackLayout BackgroundColor="Wheat" Opacity="0.5"></StackLayout>
 
-                <ScrollView Margin="10,10,10,0">
-                    <Image Source="list.png"></Image>
+                <ScrollView>
 
+                    <ListView x:Name="listView" ItemsSource="{Binding ListLocation}" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout 
+                                        Orientation="Vertical">
+                                        <Label Text="{Binding Titulo}" FontSize="Large"
+                                         TextColor="Black" />
+                                        <Label Text="{Binding Subtitulo}" FontSize="Medium"
+                                         TextColor="Black" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
                 </ScrollView>
 
             </Grid>

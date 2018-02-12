@@ -60,23 +60,13 @@
     <Compile Include="Infrastructure\InstanceLocator.cs" />
     <Compile Include="Interfaces\INetworkConnection.cs" />
     <Compile Include="Models\Agente.cs" />
+    <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Empresa.cs" />
-    <Compile Include="Models\Marca.cs" />
-    <Compile Include="Models\Carro.cs" />
-    <Compile Include="Models\Modelo.cs" />
-    <Compile Include="Models\Multa.cs" />
-    <Compile Include="Models\Parqueo.cs" />
     <Compile Include="Models\PuntoSector.cs" />
-    <Compile Include="Models\Saldo.cs" />
     <Compile Include="Models\Sector.cs" />
-    <Compile Include="Models\TarjetaCredito.cs" />
-    <Compile Include="Models\TarjetaPrepago.cs" />
-    <Compile Include="Models\TipoMultas.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioTarjetaPrepago.cs" />
-    <Compile Include="Pages\ConsultarAutoPage.xaml.cs">
-      <DependentUpon>ConsultarAutoPage.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Visita.cs" />
     <Compile Include="Pages\ListViewPage.xaml.cs">
       <DependentUpon>ListViewPage.xaml</DependentUpon>
     </Compile>
@@ -95,15 +85,6 @@
     <Compile Include="Pages\NotInternetPage.xaml.cs">
       <DependentUpon>NotInternetPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PasswordPage.xaml.cs">
-      <DependentUpon>PasswordPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\PonerMultaPage.xaml.cs">
-      <DependentUpon>PonerMultaPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\VerificarAutoPage.xaml.cs">
-      <DependentUpon>VerificarAutoPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApiService.cs" />
     <Compile Include="Services\DialogService.cs" />
@@ -114,10 +95,6 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MenuItemViewModel.cs" />
-    <Compile Include="ViewModels\PasswordViewModel.cs" />
-    <Compile Include="ViewModels\PonerMultaViewModel.cs" />
-    <Compile Include="ViewModels\VehiculosMultadosViewModels.cs" />
-    <Compile Include="ViewModels\VerificarAutoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -186,6 +163,18 @@
     <Reference Include="System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="System.Reactive.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Reactive.Core.3.1.1\lib\netstandard1.0\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Reactive.Interfaces.3.1.1\lib\netstandard1.0\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Reactive.Linq.3.1.1\lib\netstandard1.0\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Reactive.PlatformServices.3.1.1\lib\netstandard1.0\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.4.224\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
@@ -241,31 +230,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\VerificarAutoPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\ConsultarAutoPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\PonerMultaPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Pages\ListViewPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\PasswordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

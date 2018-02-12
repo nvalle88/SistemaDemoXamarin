@@ -109,13 +109,12 @@ namespace AppDemo.ViewModels
 
                 var main = MainViewModel.GetInstance();
                 main.LoadMenu(agenteView.Nombre);
-                main.CargarLugares();
+                main.LoadClientes();
 
                 Settings.userId = agente.Id;
                 Settings.UserName = agente.Nombre;                
                 Settings.companyId = 1;
                 Settings.IsLoggedIn = true;
-                main.InitMultas();
                 navigationService.SetMainPage(agenteView);
 
                 IsRunning = false;

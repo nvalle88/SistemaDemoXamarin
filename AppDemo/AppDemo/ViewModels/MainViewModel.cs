@@ -69,18 +69,10 @@ namespace AppDemo.ViewModels
         #region Propeties
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
         public MenuItemViewModel EncabezadoMenu { get; set; }
-
-        public ObservableCollection<VehiculosMultadosViewModels> VehiculosMultados { get; set; }
         public LoginViewModel NewLogin { get; set; }
-        public PonerMultaViewModel NuevaMulta { get; set; }
         public ObservableCollection<Pin> Pins { get; set; }
-        public VerificarAutoViewModel VerificarAuto { get; set; }
-        public PasswordViewModel NewPasword { get; set; }
-
         public ObservableCollection<PinRequest> LocationsRequest { get; set; }
         public ObservableCollection<TKCustomMapPin> locations;
-
-
 
         public ICommand PinCommand;
 
@@ -126,7 +118,6 @@ namespace AppDemo.ViewModels
         public MainViewModel()
         {
             instance = this;
-            VehiculosMultados = new ObservableCollection<VehiculosMultadosViewModels>();
             Pins = new ObservableCollection<Pin>();
             Locations = new ObservableCollection<TKCustomMapPin>();
             locations = new ObservableCollection<TKCustomMapPin>(); 
@@ -137,75 +128,101 @@ namespace AppDemo.ViewModels
             EncabezadoMenu = new MenuItemViewModel();
             if (Settings.IsLoggedIn)
             {
-                NuevaMulta = new PonerMultaViewModel();
             }
             navigationService = new NavigationService();
             NewLogin = new LoginViewModel();
-            VerificarAuto = new VerificarAutoViewModel();
             signalRService = new SignalRService();
-            NewPasword = new PasswordViewModel();
-            CargarLugares();
-        }
-        public async void InitMultas()
-        {
-            NuevaMulta = new PonerMultaViewModel();
+            LoadClientes();
         }
 
 
-
-        public async void CargarLugares()
+        public async void LoadClientes()
         {
-            try
-            {
-                Locations.Clear();
-                IsRunning = true;
-                if (navigationService.GetAgenteActual() != null)
+           
+                try
                 {
-                    LocationsRequest = await apiService.GetParqueados();
-                    if (LocationsRequest != null && LocationsRequest.Count() > 0)
+                var clientes = await apiService.GetAllClients();
+                Locations.Clear();
+                clientes.Count();
+                    if (clientes!=null && clientes.Count>0)
                     {
-                        foreach (var location in LocationsRequest)
+                        foreach (var cliente in clientes)
                         {
-                            string minuto = "" + location.HoraFin.ToLocalTime().Minute;
-                            string iconPin = "auto.png";
-                            TimeSpan tiempoSobrante = location.HoraFin.ToLocalTime() - DateTime.Now.ToLocalTime();
-                            Debug.WriteLine(tiempoSobrante);
-                            if (tiempoSobrante < new TimeSpan(0, 5, 99))
-                            {
-                                iconPin = "autorojo.png";
-                            }
-
-                            if (location.HoraFin.ToLocalTime().Minute.ToString().Length == 1)
-                            {
-                                minuto = "0" + location.HoraFin.ToLocalTime().Minute;
-                            }
                             var pin = new TKCustomMapPin
                             {
-                                Image = iconPin,
-
-                                Position = new Position(location.Latitud, location.Longitud),
-                                Title = location.placa,
-                                Subtitle = "El parqueo finaliza a las" + location.HoraFin.ToLocalTime().Hour + ":" + minuto,
+                                Image = "auto.png",
+                                Position = new Position(cliente.Lat, cliente.Lon),
+                                Title = cliente.Nombre,
+                                Subtitle = cliente.Telefono,
                                 ShowCallout = true,
-
                             };
                             Locations.Add(pin);
                         }
-                    }
-                   await Locator();
-                    Device.StartTimer(TimeSpan.FromSeconds(Constants.Constants.TimeForSignalR), () =>
-                    {
-                         Locator();
-                        return true;
-                    });
+
+
+
+                     }
+                }
+                catch
+                {
+
                 }
             }
-            catch
-            {
+    
 
-            }
-        }
-       // public { get; set; }
+        //public async void CargarLugares()
+        //{
+        //    try
+        //    {
+        //        Locations.Clear();
+        //        IsRunning = true;
+        //        if (navigationService.GetAgenteActual() != null)
+        //        {
+        //            LocationsRequest = await apiService.GetParqueados();
+        //            if (LocationsRequest != null && LocationsRequest.Count() > 0)
+        //            {
+        //                foreach (var location in LocationsRequest)
+        //                {
+        //                    string minuto = "" + location.HoraFin.ToLocalTime().Minute;
+        //                    string iconPin = "auto.png";
+        //                    TimeSpan tiempoSobrante = location.HoraFin.ToLocalTime() - DateTime.Now.ToLocalTime();
+        //                    Debug.WriteLine(tiempoSobrante);
+        //                    if (tiempoSobrante < new TimeSpan(0, 5, 99))
+        //                    {
+        //                        iconPin = "autorojo.png";
+        //                    }
+
+        //                    if (location.HoraFin.ToLocalTime().Minute.ToString().Length == 1)
+        //                    {
+        //                        minuto = "0" + location.HoraFin.ToLocalTime().Minute;
+        //                    }
+        //                    var pin = new TKCustomMapPin
+        //                    {
+        //                        Image = iconPin,
+
+        //                        Position = new Position(location.Latitud, location.Longitud),
+        //                        Title = location.placa,
+        //                        Subtitle = "El parqueo finaliza a las" + location.HoraFin.ToLocalTime().Hour + ":" + minuto,
+        //                        ShowCallout = true,
+
+        //                    };
+        //                    Locations.Add(pin);
+        //                }
+        //            }
+        //           await Locator();
+        //            Device.StartTimer(TimeSpan.FromSeconds(Constants.Constants.TimeForSignalR), () =>
+        //            {
+        //                 Locator();
+        //                return true;
+        //            });
+        //        }
+        //    }
+        //    catch
+        //    {
+
+        //    }
+        //}
+        // public { get; set; }
 
         public ObservableCollection<TKCustomMapPin> Locations
     {
@@ -346,7 +363,7 @@ namespace AppDemo.ViewModels
         public ICommand RefreshParkingCommand { get { return new RelayCommand(RefreshParking); } }
         public void RefreshParking()
         {
-            CargarLugares();
+            LoadClientes();
         }
 
         public ICommand ViewListCommand { get { return new RelayCommand(ViewList); } }

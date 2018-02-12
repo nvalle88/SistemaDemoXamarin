@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Image
-                Source="ic_City_Park.png"
+                Source="ds.png"
                 WidthRequest="200"
                 HeightRequest="150"
                 HorizontalOptions="Center"

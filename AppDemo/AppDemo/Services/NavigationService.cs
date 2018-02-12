@@ -15,20 +15,20 @@ namespace AppDemo.Services
             App.Master.IsPresented = false;
             switch (pageName)
             {
-                case "VerificarAutoPage":
-                    await App.Navigator.PushAsync(new VerificarAutoPage(), true);
-                    break;
+                //case "VerificarAutoPage":
+                //    await App.Navigator.PushAsync(new VerificarAutoPage(), true);
+                //    break;
 
-                case "ConsultarMultas":
-                    await App.Navigator.PushAsync(new ConsultarAutoPage());
-                    break;
-                case "PonerMulta":
-                    await App.Navigator.PushAsync(new PonerMultaPage(), true);
-                    break;
+                //case "ConsultarMultas":
+                //    await App.Navigator.PushAsync(new ConsultarAutoPage());
+                //    break;
+                //case "PonerMulta":
+                //    await App.Navigator.PushAsync(new PonerMultaPage(), true);
+                //    break;
 
-                case "PasswordPage":
-                    await App.Navigator.PushAsync(new PasswordPage());
-                    break;
+                //case "PasswordPage":
+                //    await App.Navigator.PushAsync(new PasswordPage());
+                //    break;
 
                 //case "MetodoPago":
                 //    await App.Navigator.PushAsync(new MetodoPago());
@@ -75,7 +75,7 @@ namespace AppDemo.Services
         {
             var main = MainViewModel.GetInstance();
             App.AgenteActual = agenteActual;
-            main.CargarLugares();
+            main.LoadClientes();
             App.Current.MainPage = new MasterPage();
         }
 

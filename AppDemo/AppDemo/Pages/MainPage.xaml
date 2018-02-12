@@ -10,24 +10,6 @@
              Title="Agente"
              BackgroundColor="{StaticResource MainColor}">
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-       
-        <!--<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">-->
-            
-            <!--<maps:Map         
-            x:Name="MyMap"
-            IsShowingUser="true"
-            WidthRequest="400"
-            HeightRequest="390"                               
-            >
-                <maps:Map.Behaviors>
-
-                    <local:BindableMapBehavior ItemsSource="{Binding Locations}" />
-
-                </maps:Map.Behaviors>
-
-
-            </maps:Map>-->
-
         <tkmap:TKCustomMap 
                 x:Name="Mapa"
               VerticalOptions="FillAndExpand"
@@ -37,28 +19,7 @@
                 >
         </tkmap:TKCustomMap>
             
-            <!--<Image x:Name="ImagenCity"
-               Source="ic_City_Park.png"
-                WidthRequest="180"
-                HeightRequest="100"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                IsVisible="True">
-            </Image>-->           
-            <!--<Image Grid.Column="1" Grid.Row="1" Source="ic_VerificarAuto.png"
-           HorizontalOptions="Center"
-           VerticalOptions="Center">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding VerificarAutoCommand} "></TapGestureRecognizer>
-                </Image.GestureRecognizers>
-            </Image>
-            <Image Grid.Column="1" Grid.Row="2" Source="consulta.png"
-           HorizontalOptions="Center"
-           VerticalOptions="Center">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ConsultarMultasCommand} "></TapGestureRecognizer>
-                </Image.GestureRecognizers>
-            </Image>-->
+    
         
         <controls:ImageButton VerticalOptions="Start" HorizontalOptions="Start" Margin="5,5,0,0"
                     BackgroundColor="#ffffff" 
@@ -72,7 +33,7 @@
                     Command="{Binding RefreshParkingCommand}"
                    />
 
-            <Grid HorizontalOptions="Center" VerticalOptions="End" Opacity="0.7" Margin="0,0,0,5">
+            <!--<Grid HorizontalOptions="Center" VerticalOptions="End" Opacity="0.7" Margin="0,0,0,5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
@@ -124,8 +85,76 @@
                     Grid.Column="2" Grid.Row="0"
                    />
 
-        </Grid>
-            
-        <!--</StackLayout>-->
+        </Grid>-->
+
+        <StackLayout  x:Name="QuickMenuPullLayout"
+                          HorizontalOptions="FillAndExpand"     
+                          VerticalOptions="End"
+                          Spacing="0">
+
+
+            <Grid x:Name="QuickMenuLayout">
+                <StackLayout BackgroundColor="White" Opacity="0.8"></StackLayout>
+
+                <Grid   x:Name="QuickMenuInnerLayout"
+                            Padding="20,20,20,10"
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="End">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout  x:Name="Add" 
+                                      VerticalOptions="FillAndExpand"
+                                      HorizontalOptions="FillAndExpand"
+                                      Grid.Column="0" 
+                                      Grid.Row="0">
+                        <Image Source="icon.png" 
+                                               HeightRequest="60"
+                                               WidthRequest="60"
+                                               Aspect="AspectFit"></Image>
+                        <Label Text="Agregar" 
+                                   TextColor="#1976D2" 
+                                   HorizontalOptions="FillAndExpand"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="Small"></Label>
+                    </StackLayout>
+
+                    <StackLayout  x:Name="Checkin"
+                                      VerticalOptions="FillAndExpand"
+                                      HorizontalOptions="FillAndExpand"
+                                      Grid.Column="1" 
+                                      Grid.Row="0">
+                        <Image Source="icon.png" 
+                                               HeightRequest="60"
+                                               WidthRequest="60"
+                                               Aspect="AspectFit"></Image>
+
+                        <Label Text="Checkin" 
+                                   TextColor="#1976D2" 
+                                   HorizontalOptions="FillAndExpand"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="Small"></Label>
+                    </StackLayout>
+
+                </Grid>
+            </Grid>
+
+            <Grid x:Name="Notification"  HeightRequest="200">
+                <StackLayout BackgroundColor="Black" Opacity="0.3"></StackLayout>
+
+                <ScrollView Margin="10,10,10,0">
+                    <Image Source="list.png"></Image>
+
+                </ScrollView>
+
+            </Grid>
+        </StackLayout>
+
     </Grid>
 </ContentPage>

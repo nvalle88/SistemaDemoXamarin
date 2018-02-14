@@ -15,8 +15,6 @@ using Xamarin.Forms;
 using System.Diagnostics;
 using TK.CustomMap;
 using Plugin.Geolocator;
-using Xamarin.Forms.Maps;
-using TK.CustomMap.Overlays;
 using AppDemo.Pages;
 using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Services;
@@ -70,6 +68,7 @@ namespace AppDemo.ViewModels
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
         public MenuItemViewModel EncabezadoMenu { get; set; }
         public LoginViewModel NewLogin { get; set; }
+        public AddViewModel AddnewClient { get; set; }
         public ObservableCollection<Pin> Pins { get; set; }
         public ObservableCollection<PinRequest> LocationsRequest { get; set; }
         public ObservableCollection<TKCustomMapPin> locations;
@@ -134,6 +133,7 @@ namespace AppDemo.ViewModels
             }
             navigationService = new NavigationService();
             NewLogin = new LoginViewModel();
+            AddnewClient = new AddViewModel();
             signalRService = new SignalRService();
             LoadClientes();
         }
@@ -387,10 +387,17 @@ namespace AppDemo.ViewModels
             LoadClientes();
         }
 
-        public ICommand ViewListCommand { get { return new RelayCommand(ViewList); } }
-        public async void ViewList()
+        public ICommand AddNewClientCommand { get { return new RelayCommand(AddNewClient); } }
+        public async void AddNewClient()
         {
-            PopupPage page = new ListViewPage();
+            PopupPage page = new AddPage();
+            await PopupNavigation.PushAsync(page);
+        }
+
+        public ICommand AddCheckinCommand { get { return new RelayCommand(AddCheckin); } }
+        public async void AddCheckin()
+        {
+            PopupPage page = new CheckinPage();
             await PopupNavigation.PushAsync(page);
         }
 

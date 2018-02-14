@@ -149,6 +149,45 @@ namespace AppDemo.Services
                 throw;
             }
         }
+        public async Task<Response> postNewClient(Cliente cliente)
+        {
+
+            try
+            {
+                
+                var request = JsonConvert.SerializeObject(cliente);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(URL_ws);
+                var url = "/api/Clientes";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    new Response
+                    {
+                        IsSuccess = false,
+                        Message = "error",
+
+                    };
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                var cliente_ = JsonConvert.DeserializeObject<Cliente>(result);
+                
+                return new Response
+                {
+                    IsSuccess=true,
+                    Message="Ok",
+                    Result=cliente_
+                };
+            }
+            catch (Exception)
+            {
+                return null;
+                throw;
+            }
+
+
+        }
         public async Task<List<PinRequest>> Getparking()
         {
             try

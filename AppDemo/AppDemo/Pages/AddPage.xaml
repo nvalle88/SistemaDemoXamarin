@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             x:Class="AppDemo.Pages.AddPage">
+
+
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20" BindingContext="{Binding AddnewClient}">
+
+        <StackLayout BackgroundColor="White">
+            <Label Text="Agregar nuevo cliente"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="StartAndExpand"
+                   />
+            <Entry Placeholder="Nombre" Text="{Binding cliente.nombre}"></Entry>
+            <Entry Placeholder="Telefono" Text="{Binding cliente.telefono}"></Entry>
+
+            <Button Text="Agregar" TextColor="{StaticResource AccentColor2}" Command="{Binding AddCommand}"></Button>
+
+        </StackLayout>
+
+        <Button Text="Cerrar" TextColor="WhiteSmoke" BackgroundColor="{StaticResource AccentColor2}" ></Button>
+
+    </StackLayout>
+</pages:PopupPage>

@@ -18,88 +18,18 @@
                 IsShowingUser="True"   
                 >
         </tkmap:TKCustomMap>
-            
-    
-        
-        <controls:ImageButton VerticalOptions="Start" HorizontalOptions="Start" Margin="5,5,0,0"
-                    BackgroundColor="#ffffff" 
-                    HeightRequest="50" 
-                    WidthRequest="50" 
-                    Source="ic_update" 
-                    ImageTintColor="#777777" 
-                    Orientation="ImageToRight"  
-                    ImageHeightRequest="50" 
-                    ImageWidthRequest="50" 
-                    Command="{Binding RefreshParkingCommand}"
-                   />
-
-            <!--<Grid HorizontalOptions="Center" VerticalOptions="End" Opacity="0.7" Margin="0,0,0,5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-
-            </Grid.ColumnDefinitions>
-
-                <controls:ImageButton 
-                    Text="Verificar Parqueo" 
-                    FontSize="8"
-                    BackgroundColor="#1976D2" 
-                    TextColor="#ffffff"                     
-                    HeightRequest="80" 
-                    WidthRequest="80" 
-                    Source="ic_search" 
-                    ImageTintColor="White"
-                    Orientation="ImageOnTop"                     
-                   
-                    Command="{Binding VerificarAutoCommand}"
-                    Grid.Column="0" Grid.Row="0"
-                    />
-                <controls:ImageButton 
-                    Text="Consultar  Multas" 
-                    FontSize="8"
-                    BackgroundColor="#1976D2" 
-                    TextColor="#ffffff" 
-               
-                    Source="ic_description" 
-                    ImageTintColor="White" 
-                    Orientation="ImageOnTop"  
-               
-                    Command="{Binding ConsultarMultasCommand}"
-                    Grid.Column="1" Grid.Row="0"
-                   />
-            <controls:ImageButton 
-                    Text="Ver como Lista" 
-                    FontSize="8"
-                    BackgroundColor="#1976D2" 
-                    TextColor="#ffffff" 
-                
-                    Source="ic_description" 
-                    ImageTintColor="White" 
-                    Orientation="ImageOnTop"  
-                  
-                    Command="{Binding ViewListCommand}"
-                    Grid.Column="2" Grid.Row="0"
-                   />
-
-        </Grid>-->
-
         <StackLayout  x:Name="QuickMenuPullLayout"
                           HorizontalOptions="FillAndExpand"     
                           VerticalOptions="End"
                           Spacing="0">
 
-
-            <Grid x:Name="QuickMenuLayout">
-                <StackLayout BackgroundColor="White" Opacity="0.8"></StackLayout>
+            <Grid x:Name="QuickMenuLayout" >
+                <StackLayout BackgroundColor="White" Opacity="0.8" ></StackLayout>
 
                 <Grid   x:Name="QuickMenuInnerLayout"
                             Padding="20,20,20,10"
                             HorizontalOptions="FillAndExpand" 
-                            VerticalOptions="End">
+                            VerticalOptions="StartAndExpand">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
@@ -107,43 +37,49 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-
                     <StackLayout  x:Name="Add" 
                                       VerticalOptions="FillAndExpand"
-                                      HorizontalOptions="FillAndExpand"
+                                      HorizontalOptions="CenterAndExpand"
                                       Grid.Column="0" 
                                       Grid.Row="0">
-                        <Image Source="addc.png" 
-                                               HeightRequest="60"
-                                               WidthRequest="60"
-                                               Aspect="AspectFit"
-                               ></Image>
-                        <Label Text="Agregar" 
-                                   TextColor="#1976D2" 
-                                   HorizontalOptions="FillAndExpand"
-                                   HorizontalTextAlignment="Center"
-                                   FontSize="Small"></Label>
-                    </StackLayout>
+                        <controls:ImageButton 
+                        VerticalOptions="Start" 
+                        HorizontalOptions="Start" 
+                        BackgroundColor="Transparent" 
+                        HeightRequest="80" 
+                        WidthRequest="80" 
+                        Source="addc" 
+                        ImageTintColor="{StaticResource AccentColor2}" 
+                        Orientation="ImageOnTop"  
+                        ImageHeightRequest="60" 
+                        ImageWidthRequest="60" 
+                        Command="{Binding AddNewClientCommand}"
+                        Text="Agregar"
+                        FontSize="Micro"
+                   />
 
+                    </StackLayout>
                     <StackLayout  x:Name="Checkin"
                                       VerticalOptions="FillAndExpand"
-                                      HorizontalOptions="FillAndExpand"
+                                      HorizontalOptions="CenterAndExpand"
                                       Grid.Column="1" 
                                       Grid.Row="0">
-                        <Image Source="checkin.png" 
-                                               HeightRequest="60"
-                                               WidthRequest="60"
-                                               Aspect="AspectFit"
-                               
-                                                > </Image>
-
-                        <Label Text="Checkin" 
-                                   TextColor="#1976D2" 
-                                   HorizontalOptions="FillAndExpand"
-                                   HorizontalTextAlignment="Center"
-                                   FontSize="Small"></Label>
+                        <controls:ImageButton 
+                        VerticalOptions="Start" 
+                        HorizontalOptions="Start" 
+                        BackgroundColor="Transparent" 
+                        HeightRequest="80" 
+                        WidthRequest="80" 
+                        Source="checkin" 
+                        ImageTintColor="{StaticResource AccentColor2}" 
+                        Orientation="ImageOnTop"  
+                        ImageHeightRequest="60" 
+                        ImageWidthRequest="60" 
+                        Command="{Binding AddCheckinCommand}"
+                        Text="Checkin"
+                        FontSize="Micro"
+                   />
                     </StackLayout>
-
                 </Grid>
             </Grid>
 

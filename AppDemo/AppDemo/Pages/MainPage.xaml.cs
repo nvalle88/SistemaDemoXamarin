@@ -112,9 +112,10 @@ namespace AppDemo.Pages
                 await Task.Delay(200);
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    Notification.HeightRequest = this.Height - QuickMenuLayout.Height;
+                    Notification.HeightRequest = (this.Height - QuickMenuLayout.Height);
                     QuickMenuPullLayout.TranslationY = Notification.HeightRequest;
                 });
+
             });
         }
 
@@ -131,6 +132,7 @@ namespace AppDemo.Pages
 
             EventSubscriptions.Add(panGestureObservable);
             QuickMenuInnerLayout.GestureRecognizers.Add(_panGesture);
+            
         }
 
         private void CheckQuickMenuPullOutGesture(EventPattern<PanUpdatedEventArgs> x)
@@ -145,7 +147,7 @@ namespace AppDemo.Pages
                     {
                         Device.BeginInvokeOnMainThread(() =>
                         {
-                            QuickMenuPullLayout.TranslationY = Math.Max(0,
+                                QuickMenuPullLayout.TranslationY = Math.Max(0,
                                 Math.Min(Notification.HeightRequest, QuickMenuPullLayout.TranslationY + e.TotalY));
                         });
                     }, 2);

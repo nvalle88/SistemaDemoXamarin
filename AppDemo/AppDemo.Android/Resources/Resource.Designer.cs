@@ -4044,8 +4044,8 @@ namespace AppDemo.Droid
 			// aapt resource value: 0x7f0200de
 			public const int mr_ic_play_light = 2130837726;
 			
-			// aapt resource value: 0x7f0200e7
-			public const int notification_template_icon_bg = 2130837735;
+			// aapt resource value: 0x7f0200e8
+			public const int notification_template_icon_bg = 2130837736;
 			
 			// aapt resource value: 0x7f0200df
 			public const int pantalla_Inicio = 2130837727;
@@ -4054,22 +4054,25 @@ namespace AppDemo.Droid
 			public const int pantalla_Inicio1 = 2130837728;
 			
 			// aapt resource value: 0x7f0200e1
-			public const int pincar = 2130837729;
+			public const int pantalla_Inicio_ds = 2130837729;
 			
 			// aapt resource value: 0x7f0200e2
-			public const int pincar5 = 2130837730;
+			public const int pincar = 2130837730;
 			
 			// aapt resource value: 0x7f0200e3
-			public const int places_ic_clear = 2130837731;
+			public const int pincar5 = 2130837731;
 			
 			// aapt resource value: 0x7f0200e4
-			public const int places_ic_search = 2130837732;
+			public const int places_ic_clear = 2130837732;
 			
 			// aapt resource value: 0x7f0200e5
-			public const int powered_by_google_dark = 2130837733;
+			public const int places_ic_search = 2130837733;
 			
 			// aapt resource value: 0x7f0200e6
-			public const int powered_by_google_light = 2130837734;
+			public const int powered_by_google_dark = 2130837734;
+			
+			// aapt resource value: 0x7f0200e7
+			public const int powered_by_google_light = 2130837735;
 			
 			static Drawable()
 			{

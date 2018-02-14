@@ -9,7 +9,7 @@
     <StackLayout>
         <StackLayout Orientation="Vertical">
             <Image
-               Source="ic_City_Park.png"
+               Source="ds.png"
                 WidthRequest="80"
                 HeightRequest="80"
                 HorizontalOptions="CenterAndExpand"

@@ -122,7 +122,6 @@ namespace AppDemo.Services
             {
                 return null;
             }
-
         }
         public async Task<ObservableCollection<PinRequest>> GetParqueados()
         {
@@ -237,6 +236,33 @@ namespace AppDemo.Services
                 return null;
                 throw;
             }
+        }
+
+        public async Task PostLogPosition(LogPosition position )
+        {         
+            try
+            {                
+                var request = JsonConvert.SerializeObject(position);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(URL_ws);
+                var url = "/api/LogPositions";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return;
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                return;
+              //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
+               
+            }
+            catch(Exception ex)
+            {
+                return;
+            }
+          
+
         }
     }
 }

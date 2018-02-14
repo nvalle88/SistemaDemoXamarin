@@ -55,6 +55,8 @@
     <Compile Include="Classes\UsuarioPasswordRequest.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Controls\BindablePicker.cs" />
+    <Compile Include="Helpers\GeoUtils\GeoUtils.cs" />
+    <Compile Include="Helpers\GeoUtils\Position.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\SignalRClient.cs" />
     <Compile Include="Infrastructure\InstanceLocator.cs" />

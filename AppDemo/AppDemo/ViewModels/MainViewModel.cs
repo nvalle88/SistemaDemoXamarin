@@ -21,6 +21,7 @@ using Rg.Plugins.Popup.Services;
 using Rg.Plugins.Popup.Pages;
 using AppDemo.Helpers;
 using AppDemo.Constants;
+using Plugin.Geolocator.Abstractions;
 /// <summary>
 /// Este es el View model principal desde aquí se inicializa la mayoria de las cosas
 /// 
@@ -47,7 +48,7 @@ namespace AppDemo.ViewModels
             get { return isRunning; }
         }
 
-
+       
         #region Singleton
 
         static MainViewModel instance;
@@ -135,13 +136,17 @@ namespace AppDemo.ViewModels
             NewLogin = new LoginViewModel();
             AddnewClient = new AddViewModel();
             signalRService = new SignalRService();
+
+            
+
+
             LoadClientes();
+            Locator();
         }
 
 
         public async void LoadClientes()
-        {
-           
+        {           
                 try
                 {
                 var clientes = await apiService.GetAllClients();
@@ -155,7 +160,7 @@ namespace AppDemo.ViewModels
                             var Pincliente = new TKCustomMapPin
                             {
                                 Image = "auto.png",
-                                Position = new Position(cliente.Lat, cliente.Lon),
+                                Position = new Xamarin.Forms.Maps.Position(cliente.Lat, cliente.Lon),
                                 Title = cliente.Nombre,
                                 Subtitle = cliente.Telefono,
                                 ShowCallout = true,
@@ -168,9 +173,6 @@ namespace AppDemo.ViewModels
                             Locations.Add(Pincliente);
                         ListLocation.Add(itemcliente);
                         }
-
-
-
                      }
                 }
                 catch
@@ -262,6 +264,10 @@ namespace AppDemo.ViewModels
         /// <returns></returns>
         private async Task Locator()
         {
+            await CrossGeolocator.Current.StartListeningAsync(3, 10, true);
+            CrossGeolocator.Current.PositionChanged += CrossGeolocator_Current_PositionChanged;
+
+
             var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 25;
             var location = await locator.GetPositionAsync();
@@ -270,6 +276,19 @@ namespace AppDemo.ViewModels
         }
 
 
+        async  void CrossGeolocator_Current_PositionChanged(object sender, PositionEventArgs e)
+        {
+            
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                var position = e.Position;
+
+
+            });
+
+           await apiService.PostLogPosition(new LogPosition { idAgente = App.AgenteActual.Id, Lat = e.Position.Latitude, Lon = e.Position.Longitude, Fecha=DateTime.Now });
+
+        }
 
 
 

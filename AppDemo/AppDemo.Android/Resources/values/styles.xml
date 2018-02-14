@@ -3,7 +3,7 @@
 
     <style name="Theme.Splash"  
          parent="android:Theme">  
-    <item name="android:windowBackground">@drawable/pantalla_Inicio</item>  
+    <item name="android:windowBackground">@drawable/pantalla_Inicio_ds</item>  
     <item name="android:windowNoTitle">true</item>  
   </style> 
   <style name="MainTheme" parent="MainTheme.Base">

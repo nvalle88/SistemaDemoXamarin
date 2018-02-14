@@ -30,19 +30,15 @@ namespace AppDemo.Services
         }
 
         public async Task<Response> Login()
-        {
-          
+        {          
                 var user = new Agente { Id =1,
                 Nombre= "Nestor"};
-
                 return new Response
                 {
                     IsSuccess = true,
                     Message = "Login Ok",
                     Result = user,
-                };
-            
-           
+                };                      
         }
         #region cliente
         public async Task<Response> SetPhotoAsync(int multaId, Stream stream)
@@ -123,6 +119,34 @@ namespace AppDemo.Services
                 return null;
             }
         }
+
+        public async Task<List<Cliente>> GetNearClients(Helpers.GeoUtils.Position position)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(position);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(URL_ws);
+                var url = "/api/Clientes/GetNearClients";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                var clientes = JsonConvert.DeserializeObject<List<Cliente>>(result);
+                return clientes;
+                //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
         public async Task<ObservableCollection<PinRequest>> GetParqueados()
         {
             try

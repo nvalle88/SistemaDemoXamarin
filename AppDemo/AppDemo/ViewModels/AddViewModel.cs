@@ -29,9 +29,12 @@ namespace AppDemo.ViewModels
         #region constructor
         public AddViewModel()
         {
+            cliente = new Cliente();
+
             navigationService = new NavigationService();
             dialogService = new DialogService();
             apiService = new ApiService();
+            Locator();
         }
         #endregion
         private async Task Locator()
@@ -54,7 +57,7 @@ namespace AppDemo.ViewModels
 
             if (string.IsNullOrEmpty(cliente.Telefono))
             {
-                await dialogService.ShowMessage("Error", "Debe ingresarel telefono del cliente");
+                await dialogService.ShowMessage("Error", "Debe ingresar el telefono del cliente");
                 return;
             }
 
@@ -62,11 +65,11 @@ namespace AppDemo.ViewModels
             if (response.IsSuccess)
             {
                 var cliente = (Cliente)response.Result;
-                await dialogService.ShowMessage("Error", "Usuario o contraseña incorrectos");
+                await dialogService.ShowMessage("Ok", "Cliente registrado correctamente");
                 return;
             }
 
-            await dialogService.ShowMessage("Error", "Usuario o contraseña incorrectos");
+            await dialogService.ShowMessage("Error", "Cliente no registrado");
         }
 
 

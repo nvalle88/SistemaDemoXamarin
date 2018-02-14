@@ -70,6 +70,7 @@ namespace AppDemo.ViewModels
         public MenuItemViewModel EncabezadoMenu { get; set; }
         public LoginViewModel NewLogin { get; set; }
         public AddViewModel AddnewClient { get; set; }
+        public CheckinViewModel CheckinClient { get; set; }
         public ObservableCollection<Pin> Pins { get; set; }
         public ObservableCollection<PinRequest> LocationsRequest { get; set; }
         public ObservableCollection<TKCustomMapPin> locations;
@@ -135,11 +136,8 @@ namespace AppDemo.ViewModels
             navigationService = new NavigationService();
             NewLogin = new LoginViewModel();
             AddnewClient = new AddViewModel();
-            signalRService = new SignalRService();
-
-            
-
-
+            CheckinClient = new CheckinViewModel();
+            signalRService = new SignalRService();           
             LoadClientes();
             Locator();
         }
@@ -282,8 +280,6 @@ namespace AppDemo.ViewModels
             Device.BeginInvokeOnMainThread(() =>
             {
                 var position = e.Position;
-
-
             });
 
            await apiService.PostLogPosition(new LogPosition { idAgente = App.AgenteActual.Id, Lat = e.Position.Latitude, Lon = e.Position.Longitude, Fecha=DateTime.Now });

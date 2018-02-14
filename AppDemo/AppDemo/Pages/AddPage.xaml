@@ -9,13 +9,16 @@
 
     <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20" BindingContext="{Binding AddnewClient}">
 
-        <StackLayout BackgroundColor="White">
+        <StackLayout BackgroundColor="White" Padding="5" >
             <Label Text="Agregar nuevo cliente"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="StartAndExpand"
                    />
-            <Entry Placeholder="Nombre" Text="{Binding cliente.nombre}"></Entry>
-            <Entry Placeholder="Telefono" Text="{Binding cliente.telefono}"></Entry>
+            <Entry FontSize="Small" Placeholder="Nombre" Text="{Binding cliente.Nombre ,Mode=TwoWay}"></Entry>
+            <Entry FontSize="Small" Placeholder="Ruc" Text="{Binding cliente.Ruc ,Mode=TwoWay}"></Entry>
+            <Entry FontSize="Small" Placeholder="Telefono" Text="{Binding cliente.Telefono ,Mode=TwoWay}"></Entry>
+            <Entry FontSize="Small" Placeholder="Direccion" Text="{Binding cliente.Direccion ,Mode=TwoWay}"></Entry>
+            <Entry FontSize="Small" Placeholder="Persona de Contacto" Text="{Binding cliente.PersonaContacto ,Mode=TwoWay}"></Entry>
 
             <Button Text="Agregar" TextColor="{StaticResource AccentColor2}" Command="{Binding AddCommand}"></Button>
 

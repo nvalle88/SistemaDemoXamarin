@@ -130,16 +130,17 @@ namespace AppDemo.ViewModels
             apiService = new ApiService();
             Menu = new ObservableCollection<MenuItemViewModel>();
             EncabezadoMenu = new MenuItemViewModel();
-            if (Settings.IsLoggedIn)
-            {
-            }
+           
             navigationService = new NavigationService();
             NewLogin = new LoginViewModel();
             AddnewClient = new AddViewModel();
             CheckinClient = new CheckinViewModel();
             signalRService = new SignalRService();           
             LoadClientes();
-            Locator();
+            if (Settings.IsLoggedIn)
+            {
+                Locator();
+            }
         }
 
 
@@ -166,7 +167,10 @@ namespace AppDemo.ViewModels
                             var itemcliente = new ListRequest
                             {
                                 Titulo=cliente.Nombre,
-                                Subtitulo=cliente.Telefono
+                                Subtitulo=cliente.Telefono,
+                                Dir=cliente.Direccion,
+                                Persona=cliente.PersonaContacto
+                                
                             };
                             Locations.Add(Pincliente);
                         ListLocation.Add(itemcliente);
@@ -263,14 +267,7 @@ namespace AppDemo.ViewModels
         private async Task Locator()
         {
             await CrossGeolocator.Current.StartListeningAsync(3, 10, true);
-            CrossGeolocator.Current.PositionChanged += CrossGeolocator_Current_PositionChanged;
-
-
-            var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 25;
-            var location = await locator.GetPositionAsync();
-            await Task.Delay(1000);
-            signalRService.SendPosition((float)location.Latitude, (float)location.Longitude);
+            CrossGeolocator.Current.PositionChanged += CrossGeolocator_Current_PositionChanged;        
         }
 
 
@@ -280,9 +277,11 @@ namespace AppDemo.ViewModels
             Device.BeginInvokeOnMainThread(() =>
             {
                 var position = e.Position;
+
             });
 
            await apiService.PostLogPosition(new LogPosition { idAgente = App.AgenteActual.Id, Lat = e.Position.Latitude, Lon = e.Position.Longitude, Fecha=DateTime.Now });
+           await  signalRService.SendPosition((float)e.Position.Latitude, (float)e.Position.Longitude);
 
         }
 

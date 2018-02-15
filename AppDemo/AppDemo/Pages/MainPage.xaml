@@ -46,8 +46,8 @@
                         VerticalOptions="Start" 
                         HorizontalOptions="Start" 
                         BackgroundColor="Transparent" 
-                        HeightRequest="80" 
-                        WidthRequest="80" 
+                        HeightRequest="100" 
+                        WidthRequest="100" 
                         Source="addc" 
                         ImageTintColor="{StaticResource AccentColor2}" 
                         Orientation="ImageOnTop"  
@@ -68,8 +68,8 @@
                         VerticalOptions="Start" 
                         HorizontalOptions="Start" 
                         BackgroundColor="Transparent" 
-                        HeightRequest="80" 
-                        WidthRequest="80" 
+                        HeightRequest="100" 
+                        WidthRequest="100" 
                         Source="checkin" 
                         ImageTintColor="{StaticResource AccentColor2}" 
                         Orientation="ImageOnTop"  
@@ -84,28 +84,33 @@
             </Grid>
 
             <Grid x:Name="Notification"  HeightRequest="200">
-                <StackLayout BackgroundColor="Wheat" Opacity="0.5"></StackLayout>
-
+                <StackLayout BackgroundColor="White" Opacity="0.5"></StackLayout>
                 <ScrollView>
-
                     <ListView x:Name="listView" ItemsSource="{Binding ListLocation}" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout 
+                                        Orientation="Horizontal">
+                                        <Image Source="client"></Image>
+                                        <StackLayout 
                                         Orientation="Vertical">
-                                        <Label Text="{Binding Titulo}" FontSize="Large"
+                                            <Label Text="{Binding Titulo}" FontAttributes="Bold" FontSize="Small"
                                          TextColor="Black" />
-                                        <Label Text="{Binding Subtitulo}" FontSize="Medium"
+                                            <Label Text="{Binding Subtitulo}" FontSize="Small"
                                          TextColor="Black" />
+                                            <Label Text="{Binding Dir}" FontSize="Micro"
+                                         TextColor="Black" />
+                                            <Label Text="{Binding Persona}" FontSize="Small"
+                                         TextColor="Black" />
+                                        </StackLayout>
                                     </StackLayout>
+
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-
                     </ListView>
                 </ScrollView>
-
             </Grid>
         </StackLayout>
 

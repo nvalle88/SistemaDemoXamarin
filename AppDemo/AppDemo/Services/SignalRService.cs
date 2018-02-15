@@ -9,7 +9,7 @@ namespace AppDemo.Services
 {
     public class SignalRService
     {
-        public static SignalRClient SignalRClient = new SignalRClient(Constants.Constants.CityparkWeb);
+        public static SignalRClient SignalRClient = new SignalRClient(Constants.Constants.SignalRWeb);
         DialogService dialogService = new DialogService();
         /// <summary>
         /// esta tarea permite enviar la posicion segun los parametros de latitud y longitud

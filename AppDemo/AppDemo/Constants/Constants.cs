@@ -28,7 +28,7 @@ namespace AppDemo.Constants
         
 
         public static string WebServiceURL = "http://demodsws.azurewebsites.net/";
-        public static string CityparkWeb = "http://52.224.8.198:90";
+        public static string SignalRWeb = "http://demodsweb.azurewebsites.net/";
         public static int TimeForSignalR = 30;
         public static double Distance = 30;
     }

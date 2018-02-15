@@ -2,6 +2,7 @@
 using AppDemo.Services;
 using GalaSoft.MvvmLight.Command;
 using Plugin.Geolocator;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -72,7 +73,13 @@ namespace AppDemo.ViewModels
             await dialogService.ShowMessage("Error", "Cliente no registrado");
         }
 
+        public ICommand CloseCommand { get { return new RelayCommand(Close); } }
+        public async void Close()
+        {
+            //    PopupPage page = new CheckinPage();
 
+            await PopupNavigation.PopAllAsync();
+        }
 
 
     }

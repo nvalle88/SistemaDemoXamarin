@@ -67,6 +67,7 @@
     <Compile Include="Models\LogPosition.cs" />
     <Compile Include="Models\PuntoSector.cs" />
     <Compile Include="Models\Sector.cs" />
+    <Compile Include="Models\Tipos.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioTarjetaPrepago.cs" />
     <Compile Include="Models\Visita.cs" />

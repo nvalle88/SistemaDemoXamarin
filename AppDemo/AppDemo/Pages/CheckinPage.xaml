@@ -13,16 +13,16 @@
                 HorizontalOptions="StartAndExpand"
                    />
 
-            <controls:BindablePicker  Title="Elija el cliente de la visita" ItemsSource="{Binding Cliente}"   DisplayMemberPath="Nombre"></controls:BindablePicker>
-            <controls:BindablePicker  Title="Tipo de visita" ></controls:BindablePicker>
-            <Entry FontSize="Small" Placeholder="Valor"></Entry>
-            <Label FontSize="Small" Text="Observación"></Label>
-            <Editor FontSize="Small" HeightRequest="50"></Editor>
-            <Button Text="CheckIn" TextColor="{StaticResource AccentColor2}"></Button>
+            <controls:BindablePicker  Title="Elija el cliente de la visita" ItemsSource="{Binding Cliente}"   DisplayMemberPath="Nombre" SelectedItem="{Binding clienteSelectItem, Mode=TwoWay}" ></controls:BindablePicker>
+            <controls:BindablePicker  Title="Tipo de visita" ItemsSource="{Binding Tipos}" DisplayMemberPath="tipo" SelectedItem="{Binding TipoSelectItem, Mode=TwoWay}" ></controls:BindablePicker>
+            <Entry FontSize="Small" Placeholder="Valor $" Text="{Binding valor}" Keyboard="Numeric" ></Entry>
+            <Label FontSize="Small"  Text="Observación"></Label>
+            <Editor FontSize="Small" HeightRequest="50" Text="{Binding visita.Observacion}"></Editor>
+            <Button Text="CheckIn" TextColor="{StaticResource AccentColor2}" Command="{Binding CheckCommand}"></Button>
 
         </StackLayout>
 
-        <Button Text="Cerrar" TextColor="WhiteSmoke" BackgroundColor="{StaticResource AccentColor2}" ></Button>
+        <Button Text="Cerrar" TextColor="WhiteSmoke" BackgroundColor="{StaticResource AccentColor2}" Command="{Binding CloseCommand}" ></Button>
 
     </StackLayout>
 </pages:PopupPage>

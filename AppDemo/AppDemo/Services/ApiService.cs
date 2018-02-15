@@ -122,6 +122,7 @@ namespace AppDemo.Services
 
         public async Task<List<Cliente>> GetNearClients(Helpers.GeoUtils.Position position)
         {
+            
             try
             {
                 var request = JsonConvert.SerializeObject(position);
@@ -145,8 +146,6 @@ namespace AppDemo.Services
                 return null;
             }
         }
-
-
         public async Task<ObservableCollection<PinRequest>> GetParqueados()
         {
             try
@@ -261,7 +260,6 @@ namespace AppDemo.Services
                 throw;
             }
         }
-
         public async Task PostLogPosition(LogPosition position )
         {         
             try
@@ -288,5 +286,46 @@ namespace AppDemo.Services
           
 
         }
+        public async Task<Response> Checkin(Visita visita)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(visita);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(URL_ws);
+                var url = "/api/Visitas/PostCheckin";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = "error",
+                    }; ;
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                return new Response
+                {
+                    IsSuccess = true,
+                    Message = "Ok",
+                }; ;
+                //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
+
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "",
+                }; 
+            }
+
+
+
+          
+        }
+
     }
 }

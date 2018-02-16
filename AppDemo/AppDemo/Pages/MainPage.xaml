@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:AppDemo.Behaviors;assembly=AppDemo"
              xmlns:tkmap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Agente"
+             Title="Digital Strategy"
              BackgroundColor="{StaticResource MainColor}">
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <tkmap:TKCustomMap 
@@ -15,7 +15,8 @@
               VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
                 CustomPins="{Binding Locations}"    
-                IsShowingUser="True"   
+                IsShowingUser="True"
+                            
                 >
         </tkmap:TKCustomMap>
         <StackLayout  x:Name="QuickMenuPullLayout"
@@ -99,10 +100,7 @@
                                          TextColor="Black" />
                                             <Label Text="{Binding Subtitulo}" FontSize="Small"
                                          TextColor="Black" />
-                                            <Label Text="{Binding Dir}" FontSize="Micro"
-                                         TextColor="Black" />
-                                            <Label Text="{Binding Persona}" FontSize="Small"
-                                         TextColor="Black" />
+                                       
                                         </StackLayout>
                                     </StackLayout>
 

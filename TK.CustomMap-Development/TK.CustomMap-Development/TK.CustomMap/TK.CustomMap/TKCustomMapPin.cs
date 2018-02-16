@@ -66,9 +66,11 @@ namespace TK.CustomMap
             get { return subtitle; }
             set { this.SetField(ref subtitle, value); }
         }
+     
         /// <summary>
         /// Gets/Sets if the callout should be displayed when a pin gets selected
         /// </summary>
+
         public bool ShowCallout
         {
             get { return showCallout; }

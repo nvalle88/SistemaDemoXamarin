@@ -161,16 +161,14 @@ namespace AppDemo.ViewModels
                                 Image = "auto.png",
                                 Position = new Xamarin.Forms.Maps.Position(cliente.Lat, cliente.Lon),
                                 Title = cliente.Nombre,
-                                Subtitle = cliente.Telefono,
+                                Subtitle = "Dirección: "+cliente.Direccion,
+                                
                                 ShowCallout = true,
                             };
                             var itemcliente = new ListRequest
                             {
                                 Titulo=cliente.Nombre,
-                                Subtitulo=cliente.Telefono,
-                                Dir=cliente.Direccion,
-                                Persona=cliente.PersonaContacto
-                                
+                                Subtitulo= cliente.PersonaContacto+" "+ cliente.Telefono,                                                     
                             };
                             Locations.Add(Pincliente);
                         ListLocation.Add(itemcliente);
@@ -455,8 +453,8 @@ namespace AppDemo.ViewModels
             {
 
                 PageName = "VerificarAutoPage",
-                Icon = "ic_Recarga_Prepago.png",
-                Title = "Verificar vehículo",
+                Icon = "addc.png",
+                Title = "Nuevo Cliente",
                 SubTitle = "",
 
             });
@@ -465,8 +463,8 @@ namespace AppDemo.ViewModels
             {
 
                 PageName = "ConsultarMultas",
-                Icon = "ic_Historial_Compras.png",
-                Title = "Consultar multas del día",
+                Icon = "checkin.png",
+                Title = "Checkin",
                 SubTitle = "",
             });
 

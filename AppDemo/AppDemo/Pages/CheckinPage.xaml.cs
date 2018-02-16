@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using AppDemo.ViewModels;
+using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,12 @@ namespace AppDemo.Pages
 	public partial class CheckinPage : PopupPage
 
     {
+        CheckinViewModel viewmodel;
         public CheckinPage ()
 		{
 			InitializeComponent ();
-		}
-	}
+            viewmodel = new CheckinViewModel();
+            BindingContext = viewmodel;
+        }
+    }
 }

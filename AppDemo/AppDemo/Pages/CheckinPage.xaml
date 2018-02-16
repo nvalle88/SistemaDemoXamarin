@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:controls="clr-namespace:AppDemo.Controls"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="AppDemo.Pages.CheckinPage">
-    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20" BindingContext="{Binding CheckinClient}">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
 
         <Label Text="Checkin"
                 VerticalOptions="CenterAndExpand" 

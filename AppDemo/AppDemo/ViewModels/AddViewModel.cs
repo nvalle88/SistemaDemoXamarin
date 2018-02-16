@@ -35,7 +35,6 @@ namespace AppDemo.ViewModels
             navigationService = new NavigationService();
             dialogService = new DialogService();
             apiService = new ApiService();
-            Locator();
         }
         #endregion
         private async Task Locator()
@@ -50,6 +49,8 @@ namespace AppDemo.ViewModels
         public ICommand AddCommand { get { return new RelayCommand(Add); } }
         private async void Add()
         {
+            await Locator();
+
             if (string.IsNullOrEmpty(cliente.Nombre))
             {
                 await dialogService.ShowMessage("Error", "Debe ingresar el nombre del cliente");
@@ -67,7 +68,8 @@ namespace AppDemo.ViewModels
             {
                 var cliente = (Cliente)response.Result;
                 await dialogService.ShowMessage("Ok", "Cliente registrado correctamente");
-                return;
+                
+                await PopupNavigation.PopAllAsync();
             }
 
             await dialogService.ShowMessage("Error", "Cliente no registrado");

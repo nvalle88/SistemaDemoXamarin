@@ -22,6 +22,7 @@ using Rg.Plugins.Popup.Pages;
 using AppDemo.Helpers;
 using AppDemo.Constants;
 using Plugin.Geolocator.Abstractions;
+using TK.CustomMap.Overlays;
 /// <summary>
 /// Este es el View model principal desde aquí se inicializa la mayoria de las cosas
 /// 
@@ -74,8 +75,10 @@ namespace AppDemo.ViewModels
         public ObservableCollection<Pin> Pins { get; set; }
         public ObservableCollection<PinRequest> LocationsRequest { get; set; }
         public ObservableCollection<TKCustomMapPin> locations;
+        public TKCustomMapPin MyPin { get; set; }
+        public TKRoute MyRoute { get; set; }
         public ObservableCollection<ListRequest> listlocation;
-
+        public TKCustomMapPin myPosition;
 
         public ICommand PinCommand;
 
@@ -126,10 +129,13 @@ namespace AppDemo.ViewModels
             locations = new ObservableCollection<TKCustomMapPin>();
             listlocation = new ObservableCollection<ListRequest>();
 
+            myPosition = new TKCustomMapPin();
+
             LocationsRequest = new ObservableCollection<PinRequest>();
             apiService = new ApiService();
             Menu = new ObservableCollection<MenuItemViewModel>();
             EncabezadoMenu = new MenuItemViewModel();
+            
            
             navigationService = new NavigationService();
             NewLogin = new LoginViewModel();
@@ -158,7 +164,7 @@ namespace AppDemo.ViewModels
                         {
                             var Pincliente = new TKCustomMapPin
                             {
-                                Image = "auto.png",
+                                Image = "pin.png",
                                 Position = new Xamarin.Forms.Maps.Position(cliente.Lat, cliente.Lon),
                                 Title = cliente.Nombre,
                                 Subtitle = "Dirección: "+cliente.Direccion,
@@ -275,7 +281,11 @@ namespace AppDemo.ViewModels
             Device.BeginInvokeOnMainThread(() =>
             {
                 var position = e.Position;
+                myPosition.Position = new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude);
 
+                //e.Position.Latitude,0);
+                
+                // e.Position.Longitude;
             });
 
            await apiService.PostLogPosition(new LogPosition { idAgente = App.AgenteActual.Id, Lat = e.Position.Latitude, Lon = e.Position.Longitude, Fecha=DateTime.Now });
@@ -287,83 +297,6 @@ namespace AppDemo.ViewModels
 
 
 
-        //    var locations = new List<BindableLocation47>();
-
-        //    var location = new BindableLocation47
-        //    {
-
-        //        LocationTitle = "Usuario 1",
-
-        //        LocationDescription = "Su tiempo de parqueo termina a las 17:30 ",
-
-        //        Latitude = -0.174791,
-
-        //        Longitude = -78.483573,
-
-        //        ActionCommand = new Command(PinSelected)
-
-        //    };           
-
-        //    locations.Add(location);
-        //    location = new BindableLocation47
-
-        //    {
-
-        //        LocationTitle = "Usuario 2",
-
-        //        LocationDescription = "Su tiempo de parqueo termina a las 15:00",
-
-        //        Latitude = -0.173200,
-
-        //        Longitude = -78.483307,
-
-        //        ActionCommand = new Command(PinSelected)
-
-        //    };
-        //    locations.Add(location);
-        //    location = new BindableLocation47
-
-        //    {
-
-        //        LocationTitle = "Usuario 3",
-
-        //        LocationDescription = "Su tiempo de parqueo termina a las 16:30",
-
-        //        Latitude = -0.175324,
-
-        //        Longitude = -78.485356,
-
-        //        ActionCommand = new Command(PinSelected)
-
-
-
-        //    };
-        //    locations.Add(location);         
-        //    Locations = new ObservableCollection<BindableLocation47>(locations);
-
-
-        //}
-        //public void PinSelected(object param)
-
-        //{
-
-        //    var pin = param as Pin;
-
-
-
-        //    if (pin != null)
-
-        //    {
-
-
-
-        //         Debug.WriteLine(pin.Label);
-
-
-
-        //    }
-
-        //}
 
 
         #endregion
@@ -379,12 +312,21 @@ namespace AppDemo.ViewModels
             IsRefreshing = false;
         }
 
-        public ICommand ConsultarMultasCommand { get { return new RelayCommand(ConsultarMultas); } }
+        public ICommand PinSelected { get { return new RelayCommand(pinselected); } }
 
-        public async void ConsultarMultas()
+        public async void pinselected()
         {
-            await navigationService.Navigate("ConsultarMultas");
-            IsRefreshing = false;
+
+            //Debug.WriteLine("debe pintarse la ruta" + MyPin.Position.Latitude);
+
+            //MyRoute = new TKRoute
+            //{
+            //    TravelMode = TKRouteTravelMode.Driving,
+            //    Source = myPosition.Position,
+            //    Destination = MyPin.Position,
+            //    Color = Color.Blue
+            //};
+
         }
 
         public ICommand RefreshCarrosCommand { get { return new RelayCommand(RefreshCarros); } }

@@ -4053,8 +4053,8 @@ namespace AppDemo.Droid
 			// aapt resource value: 0x7f0200e1
 			public const int mr_ic_play_light = 2130837729;
 			
-			// aapt resource value: 0x7f0200f1
-			public const int notification_template_icon_bg = 2130837745;
+			// aapt resource value: 0x7f0200f2
+			public const int notification_template_icon_bg = 2130837746;
 			
 			// aapt resource value: 0x7f0200e2
 			public const int obser = 2130837730;
@@ -4072,34 +4072,37 @@ namespace AppDemo.Droid
 			public const int pcontact = 2130837734;
 			
 			// aapt resource value: 0x7f0200e7
-			public const int pincar = 2130837735;
+			public const int pin = 2130837735;
 			
 			// aapt resource value: 0x7f0200e8
-			public const int pincar5 = 2130837736;
+			public const int pincar = 2130837736;
 			
 			// aapt resource value: 0x7f0200e9
-			public const int places_ic_clear = 2130837737;
+			public const int pincar5 = 2130837737;
 			
 			// aapt resource value: 0x7f0200ea
-			public const int places_ic_search = 2130837738;
+			public const int places_ic_clear = 2130837738;
 			
 			// aapt resource value: 0x7f0200eb
-			public const int powered_by_google_dark = 2130837739;
+			public const int places_ic_search = 2130837739;
 			
 			// aapt resource value: 0x7f0200ec
-			public const int powered_by_google_light = 2130837740;
+			public const int powered_by_google_dark = 2130837740;
 			
 			// aapt resource value: 0x7f0200ed
-			public const int ruc = 2130837741;
+			public const int powered_by_google_light = 2130837741;
 			
 			// aapt resource value: 0x7f0200ee
-			public const int telefono = 2130837742;
+			public const int ruc = 2130837742;
 			
 			// aapt resource value: 0x7f0200ef
-			public const int tipo = 2130837743;
+			public const int telefono = 2130837743;
 			
 			// aapt resource value: 0x7f0200f0
-			public const int valor = 2130837744;
+			public const int tipo = 2130837744;
+			
+			// aapt resource value: 0x7f0200f1
+			public const int valor = 2130837745;
 			
 			static Drawable()
 			{

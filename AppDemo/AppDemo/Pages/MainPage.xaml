@@ -15,9 +15,8 @@
               VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
                 CustomPins="{Binding Locations}"    
-                IsShowingUser="True"
-                            
-                >
+                IsShowingUser="True">
+            
         </tkmap:TKCustomMap>
         <StackLayout  x:Name="QuickMenuPullLayout"
                           HorizontalOptions="FillAndExpand"     

@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:AppDemo.Behaviors;assembly=AppDemo"
              xmlns:tkmap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Digital Strategy"
+             Title="Gestion de Ventas"
              BackgroundColor="{StaticResource MainColor}">
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <tkmap:TKCustomMap 
@@ -18,6 +18,17 @@
                 IsShowingUser="True">
             
         </tkmap:TKCustomMap>
+        <controls:ImageButton VerticalOptions="Start" HorizontalOptions="Start" Margin="5,5,0,0"
+                    BackgroundColor="#ffffff" 
+                    HeightRequest="50" 
+                    WidthRequest="50" 
+                    Source="ic_update" 
+                    ImageTintColor="#777777" 
+                    Orientation="ImageToRight"  
+                    ImageHeightRequest="50" 
+                    ImageWidthRequest="50" 
+                    Command="{Binding RefreshDataCommand}"
+                   />
         <StackLayout  x:Name="QuickMenuPullLayout"
                           HorizontalOptions="FillAndExpand"     
                           VerticalOptions="End"

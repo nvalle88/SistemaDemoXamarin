@@ -82,6 +82,8 @@ namespace AppDemo.ViewModels
 
         public ICommand PinCommand;
 
+       
+
         public bool IsRefreshing
         {
             set
@@ -187,61 +189,6 @@ namespace AppDemo.ViewModels
                 }
             }
     
-
-        //public async void CargarLugares()
-        //{
-        //    try
-        //    {
-        //        Locations.Clear();
-        //        IsRunning = true;
-        //        if (navigationService.GetAgenteActual() != null)
-        //        {
-        //            LocationsRequest = await apiService.GetParqueados();
-        //            if (LocationsRequest != null && LocationsRequest.Count() > 0)
-        //            {
-        //                foreach (var location in LocationsRequest)
-        //                {
-        //                    string minuto = "" + location.HoraFin.ToLocalTime().Minute;
-        //                    string iconPin = "auto.png";
-        //                    TimeSpan tiempoSobrante = location.HoraFin.ToLocalTime() - DateTime.Now.ToLocalTime();
-        //                    Debug.WriteLine(tiempoSobrante);
-        //                    if (tiempoSobrante < new TimeSpan(0, 5, 99))
-        //                    {
-        //                        iconPin = "autorojo.png";
-        //                    }
-
-        //                    if (location.HoraFin.ToLocalTime().Minute.ToString().Length == 1)
-        //                    {
-        //                        minuto = "0" + location.HoraFin.ToLocalTime().Minute;
-        //                    }
-        //                    var pin = new TKCustomMapPin
-        //                    {
-        //                        Image = iconPin,
-
-        //                        Position = new Position(location.Latitud, location.Longitud),
-        //                        Title = location.placa,
-        //                        Subtitle = "El parqueo finaliza a las" + location.HoraFin.ToLocalTime().Hour + ":" + minuto,
-        //                        ShowCallout = true,
-
-        //                    };
-        //                    Locations.Add(pin);
-        //                }
-        //            }
-        //           await Locator();
-        //            Device.StartTimer(TimeSpan.FromSeconds(Constants.Constants.TimeForSignalR), () =>
-        //            {
-        //                 Locator();
-        //                return true;
-        //            });
-        //        }
-        //    }
-        //    catch
-        //    {
-
-        //    }
-        //}
-        // public { get; set; }
-
         public ObservableCollection<TKCustomMapPin> Locations
     {
             protected set
@@ -273,7 +220,7 @@ namespace AppDemo.ViewModels
             await CrossGeolocator.Current.StartListeningAsync(3, 10, true);
             CrossGeolocator.Current.PositionChanged += CrossGeolocator_Current_PositionChanged;        
         }
-
+       
 
         async  void CrossGeolocator_Current_PositionChanged(object sender, PositionEventArgs e)
         {
@@ -292,11 +239,6 @@ namespace AppDemo.ViewModels
            await  signalRService.SendPosition((float)e.Position.Latitude, (float)e.Position.Longitude);
 
         }
-
-
-
-
-
 
 
         #endregion
@@ -329,17 +271,19 @@ namespace AppDemo.ViewModels
 
         }
 
-        public ICommand RefreshCarrosCommand { get { return new RelayCommand(RefreshCarros); } }
-        public void RefreshCarros()
-        {
-            IsRefreshing = false;
-        }
-
-        public ICommand RefreshParkingCommand { get { return new RelayCommand(RefreshParking); } }
-        public void RefreshParking()
+        public ICommand RefreshDataCommand { get { return new RelayCommand(RefreshData); } }
+        public void RefreshData()
         {
             LoadClientes();
         }
+
+     //   public ICommand RefreshParkingCommand { get { return new RelayCommand(RefreshData); } }
+      
+            
+        
+
+       
+
 
         public ICommand AddNewClientCommand { get { return new RelayCommand(AddNewClient); } }
         public async void AddNewClient()
@@ -352,8 +296,13 @@ namespace AppDemo.ViewModels
         public async void AddCheckin()
         {
             PopupPage page = new CheckinPage();
+
+          
             await PopupNavigation.PushAsync(page);
+
         }
+
+       
 
         #endregion
 
@@ -413,5 +362,7 @@ namespace AppDemo.ViewModels
             EncabezadoMenu.Agente = Agente;
         }
         #endregion
+
+
     }
 }

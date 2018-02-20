@@ -20,7 +20,7 @@ namespace AppDemo.ViewModels
         private NavigationService navigationService;
         private DialogService dialogService;
         private ApiService apiService;
-        public event PropertyChangedEventHandler PropertyChanged;
+       public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region Properties
@@ -31,7 +31,6 @@ namespace AppDemo.ViewModels
         public AddViewModel()
         {
             cliente = new Cliente();
-
             navigationService = new NavigationService();
             dialogService = new DialogService();
             apiService = new ApiService();
@@ -40,7 +39,7 @@ namespace AppDemo.ViewModels
         private async Task Locator()
         {
             var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 25;
+            locator.DesiredAccuracy = 50;
             var location = await locator.GetPositionAsync();
             cliente.Lat = location.Latitude;
             cliente.Lon = location.Longitude;
@@ -68,8 +67,10 @@ namespace AppDemo.ViewModels
             {
                 var cliente = (Cliente)response.Result;
                 await dialogService.ShowMessage("Ok", "Cliente registrado correctamente");
-                
+                //  PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Locations"));
+                cliente = new Cliente();
                 await PopupNavigation.PopAllAsync();
+                return;
             }
 
             await dialogService.ShowMessage("Error", "Cliente no registrado");
@@ -79,7 +80,6 @@ namespace AppDemo.ViewModels
         public async void Close()
         {
             //    PopupPage page = new CheckinPage();
-
             await PopupNavigation.PopAllAsync();
         }
 

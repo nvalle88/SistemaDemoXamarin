@@ -30,15 +30,18 @@ namespace AppDemo.Services
         }
 
         public async Task<Response> Login()
-        {          
-                var user = new Agente { Id =1,
-                Nombre= "Fernando Medina"};
-                return new Response
-                {
-                    IsSuccess = true,
-                    Message = "Login Ok",
-                    Result = user,
-                };                      
+        {
+            var user = new Agente
+            {
+                Id = 1,
+                Nombre = "Fernando Medina"
+            };
+            return new Response
+            {
+                IsSuccess = true,
+                Message = "Login Ok",
+                Result = user,
+            };
         }
         #region cliente
         public async Task<Response> SetPhotoAsync(int multaId, Stream stream)
@@ -98,7 +101,7 @@ namespace AppDemo.Services
             }
         }
         #endregion
-      public async Task <List<Cliente>> GetAllClients()
+        public async Task<List<Cliente>> GetAllClients()
         {
             try
             {
@@ -122,7 +125,7 @@ namespace AppDemo.Services
 
         public async Task<List<Cliente>> GetNearClients(Helpers.GeoUtils.Position position)
         {
-            
+
             try
             {
                 var request = JsonConvert.SerializeObject(position);
@@ -176,7 +179,7 @@ namespace AppDemo.Services
 
             try
             {
-                
+
                 var request = JsonConvert.SerializeObject(cliente);
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
@@ -194,12 +197,12 @@ namespace AppDemo.Services
                 }
                 var result = await response.Content.ReadAsStringAsync();
                 var cliente_ = JsonConvert.DeserializeObject<Cliente>(result);
-                
+
                 return new Response
                 {
-                    IsSuccess=true,
-                    Message="Ok",
-                    Result=cliente_
+                    IsSuccess = true,
+                    Message = "Ok",
+                    Result = cliente_
                 };
             }
             catch (Exception)
@@ -251,7 +254,7 @@ namespace AppDemo.Services
                 var PuntoSector = JsonConvert.DeserializeObject<List<PuntoSector>>(result);
                 List<Position> MyPolygon = new List<Position>();
                 foreach (var punto in PuntoSector)
-                MyPolygon.Add(new Position(punto.Latitud, punto.Longitud));
+                    MyPolygon.Add(new Position(punto.Latitud, punto.Longitud));
                 return MyPolygon;
             }
             catch (Exception)
@@ -260,10 +263,10 @@ namespace AppDemo.Services
                 throw;
             }
         }
-        public async Task PostLogPosition(LogPosition position )
-        {         
+        public async Task PostLogPosition(LogPosition position)
+        {
             try
-            {                
+            {
                 var request = JsonConvert.SerializeObject(position);
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
@@ -276,15 +279,13 @@ namespace AppDemo.Services
                 }
                 var result = await response.Content.ReadAsStringAsync();
                 return;
-              //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
-               
+                //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return;
             }
-          
-
         }
         public async Task<Response> Checkin(Visita visita)
         {
@@ -311,7 +312,6 @@ namespace AppDemo.Services
                     Message = "Ok",
                 }; ;
                 //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
-
             }
             catch (Exception ex)
             {
@@ -319,13 +319,8 @@ namespace AppDemo.Services
                 {
                     IsSuccess = false,
                     Message = "",
-                }; 
+                };
             }
-
-
-
-          
         }
-
     }
 }

@@ -4,7 +4,7 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:controls="clr-namespace:AppDemo.Controls"
              x:Class="AppDemo.Pages.CheckinPage">
-    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
+<StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
 
         <Label Text="Checkin"
                 VerticalOptions="CenterAndExpand" 
@@ -42,5 +42,4 @@
         </StackLayout>
 
 
-    </StackLayout>
-</pages:PopupPage>
+    </StackLayout></pages:PopupPage>

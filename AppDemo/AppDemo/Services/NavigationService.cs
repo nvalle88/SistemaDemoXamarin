@@ -59,9 +59,9 @@ namespace AppDemo.Services
                 //    break;
 
 
-                //case "PromocionesPage":
-                //    await App.Navigator.PushAsync(new PromocionesPage());
-                //    break;
+                case "FormPage":
+                    await App.Navigator.PushAsync(new FormPage());
+                    break;
 
                 case "MainPage":
                     await App.Navigator.PopToRootAsync();

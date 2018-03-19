@@ -131,6 +131,7 @@ namespace AppDemo.ViewModels
                 if (result.IsSuccess)
                 {
                     await dialogService.ShowMessage("Checkin", "Se agrego su visita correctamente");
+                    await navigationService.Navigate("FormPage");
                     await PopupNavigation.PopAllAsync();
 
                 }

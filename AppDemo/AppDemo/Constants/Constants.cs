@@ -21,7 +21,7 @@ namespace AppDemo.Constants
                 Color = Color.Cyan,
                 StrokeColor = Color.DarkBlue,
             };
-            public static string WebServiceURL = "http://demodsws.azurewebsites.net/";
+            public static string WebServiceURL = "http://developmentds.eastus.cloudapp.azure.com:85/simed";
             public static string SignalRWeb = "http://demodsweb.azurewebsites.net/";
             public static int TimeForSignalR = 30;
             public static double Distance = 30;

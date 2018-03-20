@@ -46,6 +46,7 @@
     <Compile Include="Classes\AgenteRequest.cs" />
     <Compile Include="Classes\BindableLocation47.cs" />
     <Compile Include="Classes\CarroRequest.cs" />
+    <Compile Include="Classes\FirmaRequest.cs" />
     <Compile Include="Classes\ListRequest.cs" />
     <Compile Include="Classes\LivePositionRequest.cs" />
     <Compile Include="Classes\LoginRequest.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Models\Agente.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Empresa.cs" />
+    <Compile Include="Models\Informe.cs" />
     <Compile Include="Models\LogPosition.cs" />
     <Compile Include="Models\PuntoSector.cs" />
     <Compile Include="Models\Sector.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="ViewModels\AddViewModel.cs" />
     <Compile Include="ViewModels\AgenteViewModel.cs" />
     <Compile Include="ViewModels\CheckinViewModel.cs" />
+    <Compile Include="ViewModels\InformeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MenuItemViewModel.cs" />

@@ -9,11 +9,18 @@
         <ScrollView>
             <StackLayout>
                 <Label Text="Pendiente Comercial" TextColor="DodgerBlue"/>
-                <Entry Placeholder="Pendientes"></Entry>
-                <Entry Placeholder="Solucion"></Entry>
+                <Entry Placeholder="Pendientes" Text="{Binding informe.PendienteComercial}"></Entry>
+                <Entry Placeholder="Solucion" Text="{Binding informe.SolucionComercial}"></Entry>
                 <Label Text="Pendiente de Servicio" TextColor="DodgerBlue"/>
-                <Entry Placeholder="Pendientes"></Entry>
-                <Entry Placeholder="Solucion"></Entry>
+                <Entry Placeholder="Pendientes" Text="{Binding informe.PendienteServicio}"></Entry>
+                <Entry Placeholder="Solucion" Text="{Binding informe.SolucionServicio}"></Entry>
+
+                <Label Text="Nuevos Negocios" TextColor="DodgerBlue"/>
+                <Entry Placeholder="Nuevos Negocios" Text="{Binding informe.NuevoNegocio}"></Entry>
+                <Label Text="Otros" TextColor="DodgerBlue"/>
+
+                <Entry Placeholder="Otros" Text="{Binding informe.Otros}"></Entry>
+                
                 <StackLayout Orientation="Horizontal"
                        HeightRequest="60">
                     <Grid>
@@ -22,7 +29,6 @@
                         </Grid.Behaviors>
                         <Image x:Name="starBlankOne"
                 Source="{local:ImageResource AppDemo.Images.star_outline.png}" />
-
                         <Image x:Name="starSelectedOne"
                 Source="{local:ImageResource AppDemo.Images.star_selected.png}"
                 IsVisible="{Binding Source={x:Reference starOne},
@@ -66,7 +72,7 @@
                     </Grid>
                     <Grid>
                         <Grid.Behaviors>
-                            <Behavior:StarBehavior x:Name="starFive" GroupName="myStar"/>
+                            <Behavior:StarBehavior x:Name="starFive" GroupName="myStar" />
                         </Grid.Behaviors>
                         <Image x:Name="starBlankFive"
                 Source="{local:ImageResource AppDemo.Images.star_outline.png}" />
@@ -76,21 +82,21 @@
                 IsVisible="{Binding Source={x:Reference starFive},
                                     Path=IsStarred}"/>
                     </Grid>
-
-
                 </StackLayout>
-
-                <StackLayout HeightRequest="230">
+                <StackLayout>
                 <firma:SignaturePadView x:Name="PadView"                              
                                 BackgroundColor="White"
-                                 HeightRequest="200" WidthRequest="300"
-                                CaptionText="Firmar This" CaptionTextColor="Black"
+                                 HeightRequest="150" WidthRequest="300"
+                                CaptionText="Firmar aquí" CaptionTextColor="Black"
                                 ClearText="Limpiar!"                                        
                                 StrokeColor="Black"
                                 StrokeWidth="2" 
-                                        HorizontalOptions="StartAndExpand"
-                                        VerticalOptions="StartAndExpand"/>
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                
+                                        />
                 </StackLayout>
+                <Button Text="Guardar" Clicked="SaveButton_Clicked"></Button>
             </StackLayout>
         </ScrollView>           
     </ContentPage.Content>

@@ -3,6 +3,7 @@ using AppDemo.Models;
 using AppDemo.Pages;
 using AppDemo.Services;
 using GalaSoft.MvvmLight.Command;
+using Newtonsoft.Json;
 using Plugin.Geolocator;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
@@ -131,7 +132,11 @@ namespace AppDemo.ViewModels
                 if (result.IsSuccess)
                 {
                     await dialogService.ShowMessage("Checkin", "Se agrego su visita correctamente");
-                    await navigationService.Navigate("FormPage");
+                    var resultado = result.Result.ToString();
+                    var visitadata = JsonConvert.DeserializeObject<Visita>(resultado);
+
+                    await App.Navigator.PushAsync(new FormPage(visitadata));
+
                     await PopupNavigation.PopAllAsync();
 
                 }

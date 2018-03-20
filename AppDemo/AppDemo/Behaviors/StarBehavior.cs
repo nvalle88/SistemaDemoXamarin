@@ -33,8 +33,12 @@ namespace AppDemo.Behaviors
 
         public int Rating
         {
-            set { SetValue(RatingProperty, value); }
-            get { return (int)GetValue(RatingProperty); }
+            set {
+                SetValue(RatingProperty, value);
+                
+            }
+            get { return (int)GetValue(RatingProperty);
+            }
         }
 
         static void OnGroupNameChanged(BindableObject bindable, object oldValue, object newValue)
@@ -67,7 +71,6 @@ namespace AppDemo.Behaviors
             else
             {
                 List<StarBehavior> behaviors = null;
-
                 if (starGroups.ContainsKey(newGroupName))
                 {
                     behaviors = starGroups[newGroupName];
@@ -77,7 +80,6 @@ namespace AppDemo.Behaviors
                     behaviors = new List<StarBehavior>();
                     starGroups.Add(newGroupName, behaviors);
                 }
-
                 behaviors.Add(behavior);
             }
 

@@ -60,7 +60,7 @@ namespace AppDemo.Services
                 var body = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(URL_ws);
-                var url = "/api/Multas/SetFoto";
+                var url = "simed/api/Multas/SetFoto";
                 var response = await client.PostAsync(url, body);
 
                 if (!response.IsSuccessStatusCode)
@@ -107,7 +107,7 @@ namespace AppDemo.Services
             {
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(URL_ws);
-                var url = "/api/Clientes";
+                var url = "simed/api/Clientes";
                 var response = await client.GetAsync(url);
                 if (!response.IsSuccessStatusCode)
                 {
@@ -132,7 +132,7 @@ namespace AppDemo.Services
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(URL_ws);
-                var url = "/api/Clientes/GetNearClients";
+                var url = "simed/api/Clientes/GetNearClients";
                 var response = await client.PostAsync(url, content);
                 if (!response.IsSuccessStatusCode)
                 {
@@ -157,7 +157,7 @@ namespace AppDemo.Services
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(URL_ws);
-                var url = "/api/Parqueos/GetParqueados";
+                var url = "simed/api/Parqueos/GetParqueados";
                 var response = await client.PostAsync(url, content);
                 if (!response.IsSuccessStatusCode)
                 {
@@ -184,7 +184,7 @@ namespace AppDemo.Services
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(URL_ws);
-                var url = "/api/Clientes";
+                var url = "simed/api/Clientes";
                 var response = await client.PostAsync(url, content);
                 if (!response.IsSuccessStatusCode)
                 {
@@ -219,7 +219,7 @@ namespace AppDemo.Services
             {
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(URL_ws);
-                var url = "/api/Parqueos/GetParqueados";
+                var url = "simed/api/Parqueos/GetParqueados";
                 var response = await client.GetAsync(url);
                 if (!response.IsSuccessStatusCode)
                 {
@@ -243,7 +243,7 @@ namespace AppDemo.Services
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(URL_ws);
-                var url = "/api/Sectors/GetMyPolygon";
+                var url = "simed/api/Sectors/GetMyPolygon";
                 var response = await client.PostAsync(url, content);
                 if (!response.IsSuccessStatusCode)
                 {
@@ -271,7 +271,7 @@ namespace AppDemo.Services
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(URL_ws);
-                var url = "/api/LogPositions";
+                var url = "simed/api/LogPositions";
                 var response = await client.PostAsync(url, content);
                 if (!response.IsSuccessStatusCode)
                 {
@@ -295,7 +295,88 @@ namespace AppDemo.Services
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(URL_ws);
-                var url = "/api/Visitas/PostCheckin";
+                var url = "simed/api/Visitas/PostCheckin";
+                var response = await client.PostAsync(url, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = "error",
+                    }; ;
+                }
+                var result = await response.Content.ReadAsStringAsync();
+                var visitadata= JsonConvert.DeserializeObject<Response>(result);
+                return visitadata;
+                //  var log = JsonConvert.DeserializeObject<LogPosition>(result);            
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "",
+                };
+            }
+        }
+
+        public async Task<Response> SetFirmaAsync(int multaId, Stream stream)
+        {
+            try
+            {
+                var array = ReadFully(stream);
+
+                var photoRequest = new PhotoRequest
+                {
+                    Id = multaId,
+                    Array = array,
+                };
+
+                var request = JsonConvert.SerializeObject(photoRequest);
+                var body = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(URL_ws);
+                var url = "simed/api/Informes/Subir";
+                var response = await client.PostAsync(url, body);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = response.StatusCode.ToString(),
+                    };
+                }
+
+                var result = await response.Content.ReadAsStringAsync();
+                var imagen = JsonConvert.DeserializeObject<Response>(result);
+
+
+                return new Response
+                {
+                    IsSuccess = true,
+                    Message = imagen.Message,
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+        }
+
+        public async Task<Response> SubirInforme(Informe informe)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(informe);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(URL_ws);
+                var url = "simed/api/Informes";
                 var response = await client.PostAsync(url, content);
                 if (!response.IsSuccessStatusCode)
                 {
@@ -322,5 +403,8 @@ namespace AppDemo.Services
                 };
             }
         }
+
+
+
     }
 }
